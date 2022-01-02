@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerShoot : MonoBehaviour
 {
@@ -16,18 +17,18 @@ public class PlayerShoot : MonoBehaviour
 
     void Update()
     {
-        Shoot();
+        if(Input.GetMouseButtonDown(0)){
+            Shoot();
+        }
     }
 
-    void Shoot(){
-        if(Input.GetMouseButtonDown(0)){
+    public void Shoot(){
             GameObject bullet = GetPooledObject();
             if(bullet){
                 bullet.transform.position = new Vector3(aim.position.x, aim.position.y, 0);
                 bullet.SetActive(true);
                 bullet.GetComponent<PlayerBullet>().Initialize(speed, attack);
             }
-        }
     }
 
     void CreateBulletPool(){
