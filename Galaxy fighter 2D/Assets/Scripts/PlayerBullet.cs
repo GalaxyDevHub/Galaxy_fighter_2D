@@ -5,14 +5,16 @@ using UnityEngine;
 public class PlayerBullet : MonoBehaviour
 {
     float speed = 1;
-    float attack = 0;
+    int attack = 1;
     Rigidbody2D rb;
-    public void Initialize(float speed, float attack){
+    PlayerShoot playerShoot;
+    public void Initialize(float speed, int attack){
         this.speed = speed;
         this.attack = attack;
     }
     void Start() {
         rb = GetComponent<Rigidbody2D>();  
+        playerShoot = GameObject.FindObjectOfType<PlayerShoot>();
     }
     void OnEnable()
     {
@@ -21,7 +23,7 @@ public class PlayerBullet : MonoBehaviour
     }
 
     private void OnDisable() {
-  
+        
     }
 
     void Update()
@@ -30,12 +32,14 @@ public class PlayerBullet : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D other) {
-        StartCoroutine(ReturnToPool(0.2f));
+        other.gameObject.GetComponent<Hp>()?.TakeDamage(attack);
+        StartCoroutine(ReturnToPool(0f));
     }
 
     IEnumerator ReturnToPool(float time){
         yield return new WaitForSeconds(time);
         gameObject.SetActive(false);
+        playerShoot.UpdateAmmoInfo();
     }
 
 }

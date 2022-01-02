@@ -6,22 +6,30 @@ using UnityEngine.UI;
 public class PlayerShoot : MonoBehaviour
 {
     List<GameObject> bulletPool = new List<GameObject>();
-    int poolAmount = 10;
+    int poolAmount = 10, ammoCurrent;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform aim;
-    float speed = 25f, attack = 1f;
+    [SerializeField] Slider sliderAmmo;
+    float speed = 25f;
+    int attack = 1;
     void Start()
     {
         CreateBulletPool();
+        sliderAmmo.maxValue = poolAmount;
+        ammoCurrent = poolAmount;
+        sliderAmmo.value = ammoCurrent;
     }
 
     void Update()
     {
+        //ShootPC();
+    }
+
+    void ShootPC(){
         if(Input.GetMouseButtonDown(0)){
             Shoot();
         }
     }
-
     public void Shoot(){
             GameObject bullet = GetPooledObject();
             if(bullet){
@@ -29,6 +37,8 @@ public class PlayerShoot : MonoBehaviour
                 bullet.SetActive(true);
                 bullet.GetComponent<PlayerBullet>().Initialize(speed, attack);
             }
+            UpdateAmmoInfo();
+           
     }
 
     void CreateBulletPool(){
@@ -49,6 +59,20 @@ public class PlayerShoot : MonoBehaviour
             }
         }
         return null;
+    }
+
+    void CheckAmmoCount(){
+        ammoCurrent = 0;
+        for (int i = 0; i < bulletPool.Count; i++){
+            if(bulletPool[i].gameObject.activeInHierarchy){
+                ammoCurrent++;
+            }
+        }
+    }
+
+    public void UpdateAmmoInfo(){
+        CheckAmmoCount();
+         sliderAmmo.value = poolAmount - ammoCurrent;
     }
 
 }

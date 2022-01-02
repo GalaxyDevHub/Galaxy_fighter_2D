@@ -13,9 +13,8 @@ public class PlayerMovement : MonoBehaviour
 
 
     void Update()
-    {
-        
-       moveX = Input.GetAxisRaw("Horizontal");
+    {  
+       //moveX = Input.GetAxisRaw("Horizontal");
     }
 
     public void MoveX(float value){
