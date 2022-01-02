@@ -23,11 +23,15 @@ public class PlayerHp : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if(hpCurrent > 0){
-            hpCurrent--;
-            UpdateSliderHp();
+        if(other.gameObject.CompareTag("Walls")){
+            return;
         }else{
-            SceneManager.LoadScene(0);
+            if(hpCurrent > 0){
+                hpCurrent--;
+                UpdateSliderHp();
+            }else{
+                SceneManager.LoadScene(0);
+            }
         }
     }
 
