@@ -10,10 +10,11 @@ public class Hp : MonoBehaviour
         
     }
 
-
-    public void TakeDamage(int attack){
+    public void TakeDamage(int attack)
+    {
         hp -= attack;
-        if(hp <= 0){
+        if(hp <= 0)
+        {
             Destroy(gameObject);
         }
     }

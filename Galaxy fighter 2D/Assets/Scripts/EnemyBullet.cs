@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
-    Rigidbody2D rb;
-    void Start()
+    void OnEnable()
     {
-        rb = GetComponent<Rigidbody2D>();
+        transform.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, -20f);
     }
 
-    void Update()
+    void OnCollisionEnter2D(Collision2D other)
     {
-        rb.velocity = new Vector2(0f,-20f);
-    }
-
-    private void OnCollisionEnter2D(Collision2D other) {
-        Destroy(gameObject);
+        other.gameObject.GetComponent<IDamageable>()?.TakeDamage(1);
+        EnemyBulletPool.Instance.ReturnToPool(this);
     }
 }

@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class PlayerHp : MonoBehaviour
+public class PlayerHp : MonoBehaviour, IDamageable
 {
-    [SerializeField] Slider sliderHp;
-    int hpMax = 10;
-    int hpCurrent;
+    [SerializeField] private Slider sliderHp;
+    private int hpMax = 10;
+    private int hpCurrent;
+
     void Start()
     {
         hpCurrent = hpMax;
@@ -16,26 +17,20 @@ public class PlayerHp : MonoBehaviour
         sliderHp.value = hpCurrent;
     }
 
-    // Update is called once per frame
-    void Update()
+    void UpdateSliderHp()
     {
-        
-    }
-
-    private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.CompareTag("Walls")){
-            return;
-        }else{
-            if(hpCurrent > 0){
-                hpCurrent--;
-                UpdateSliderHp();
-            }else{
-                SceneManager.LoadScene(0);
-            }
-        }
-    }
-
-    void UpdateSliderHp(){
         sliderHp.value = hpCurrent;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (hpCurrent > 0)
+        {
+            hpCurrent--;
+            UpdateSliderHp();
+            return;
+        }
+
+        SceneManager.LoadScene(0);
     }
 }

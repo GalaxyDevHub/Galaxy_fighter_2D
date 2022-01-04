@@ -8,35 +8,35 @@ public class PlayerBullet : MonoBehaviour
     int attack = 1;
     Rigidbody2D rb;
     PlayerShoot playerShoot;
-    public void Initialize(float speed, int attack){
+
+    public void Initialize(float speed, int attack)
+    {
         this.speed = speed;
         this.attack = attack;
     }
-    void Start() {
+
+    void Start() 
+    {
         rb = GetComponent<Rigidbody2D>();  
         playerShoot = GameObject.FindObjectOfType<PlayerShoot>();
+
+        rb.velocity = new Vector2(0f, 1f * speed);
     }
+
     void OnEnable()
     {
         transform.rotation = Quaternion.Euler(Vector2.up);
         StartCoroutine(ReturnToPool(2f));
     }
 
-    private void OnDisable() {
-        
-    }
-
-    void Update()
+    void OnCollisionEnter2D(Collision2D other) 
     {
-        rb.velocity = new Vector2(0f,1f*speed);
-    }
-
-    void OnCollisionEnter2D(Collision2D other) {
         other.gameObject.GetComponent<Hp>()?.TakeDamage(attack);
         StartCoroutine(ReturnToPool(0f));
     }
 
-    IEnumerator ReturnToPool(float time){
+    IEnumerator ReturnToPool(float time)
+    {
         yield return new WaitForSeconds(time);
         gameObject.SetActive(false);
         playerShoot.UpdateAmmoInfo();
