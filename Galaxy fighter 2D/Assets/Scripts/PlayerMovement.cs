@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Rigidbody2D rb;
-    private float moveX = 0f, speedX = 5f;
+    Rigidbody2D rb;
+    float moveX = 0f, speedX = 5f;
 
     void Start()
     {
@@ -17,10 +17,6 @@ public class PlayerMovement : MonoBehaviour
        //moveX = Input.GetAxisRaw("Horizontal");
     }
 
-    public void MoveX(float value){
-        moveX = value;
-    }
-
     void FixedUpdate() 
     {
         MovePlayer();
@@ -29,5 +25,10 @@ public class PlayerMovement : MonoBehaviour
     void MovePlayer()
     {
         rb.velocity = new Vector2(moveX*speedX, 0f);
+    }
+
+    public void MoveX(float value)
+    {
+        moveX = value;
     }
 }

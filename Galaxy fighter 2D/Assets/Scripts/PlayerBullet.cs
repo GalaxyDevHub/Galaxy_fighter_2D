@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
 {
-    private float speed = 1;
-    private int attack = 1;
-    private Rigidbody2D rb;
-    private PlayerShoot playerShoot;
+    float speed = 1;
+    int attack = 1;
+    Rigidbody2D rb;
+    PlayerShoot playerShoot;
 
     public void Initialize(float speed, int attack)
     {

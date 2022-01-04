@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class PlayerShoot : MonoBehaviour
 {
-    private List<GameObject> bulletPool = new List<GameObject>();
-    private int poolAmount = 10, ammoCurrent;
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private Transform aim;
-    [SerializeField] private Slider sliderAmmo;
-    private float speed = 25f;
-    private int attack = 1;
+    List<GameObject> bulletPool = new List<GameObject>();
+    int poolAmount = 10, ammoCurrent;
+    [SerializeField] GameObject bulletPrefab;
+    [SerializeField] Transform aim;
+    [SerializeField] Slider sliderAmmo;
+    float speed = 25f;
+    int attack = 1;
 
     void Start()
     {
@@ -31,17 +31,6 @@ public class PlayerShoot : MonoBehaviour
         if(Input.GetMouseButtonDown(0)){
             Shoot();
         }
-    }
-    public void Shoot()
-    {
-        GameObject bullet = GetPooledObject();
-        if(bullet){
-            bullet.transform.position = new Vector3(aim.position.x, aim.position.y, 0);
-            bullet.SetActive(true);
-            bullet.GetComponent<PlayerBullet>().Initialize(speed, attack);
-        }
-        UpdateAmmoInfo();
-           
     }
 
     void CreateBulletPool()
@@ -73,6 +62,18 @@ public class PlayerShoot : MonoBehaviour
                 ammoCurrent++;
             }
         }
+    }
+    public void Shoot()
+    {
+        GameObject bullet = GetPooledObject();
+        if (bullet)
+        {
+            bullet.transform.position = new Vector3(aim.position.x, aim.position.y, 0);
+            bullet.SetActive(true);
+            bullet.GetComponent<PlayerBullet>().Initialize(speed, attack);
+        }
+        UpdateAmmoInfo();
+
     }
 
     public void UpdateAmmoInfo()
