@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public class PlayerShoot : MonoBehaviour
 {
-    List<GameObject> bulletPool = new List<GameObject>();
-    int poolAmount = 10, ammoCurrent;
-    [SerializeField] GameObject bulletPrefab;
-    [SerializeField] Transform aim;
-    [SerializeField] Slider sliderAmmo;
-    float speed = 25f;
-    int attack = 1;
+    private List<GameObject> bulletPool = new List<GameObject>();
+    private int poolAmount = 10, ammoCurrent;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform aim;
+    [SerializeField] private Slider sliderAmmo;
+    private float speed = 25f;
+    private int attack = 1;
+
     void Start()
     {
         CreateBulletPool();
@@ -25,23 +26,26 @@ public class PlayerShoot : MonoBehaviour
         //ShootPC();
     }
 
-    void ShootPC(){
+    void ShootPC()
+    {
         if(Input.GetMouseButtonDown(0)){
             Shoot();
         }
     }
-    public void Shoot(){
-            GameObject bullet = GetPooledObject();
-            if(bullet){
-                bullet.transform.position = new Vector3(aim.position.x, aim.position.y, 0);
-                bullet.SetActive(true);
-                bullet.GetComponent<PlayerBullet>().Initialize(speed, attack);
-            }
-            UpdateAmmoInfo();
+    public void Shoot()
+    {
+        GameObject bullet = GetPooledObject();
+        if(bullet){
+            bullet.transform.position = new Vector3(aim.position.x, aim.position.y, 0);
+            bullet.SetActive(true);
+            bullet.GetComponent<PlayerBullet>().Initialize(speed, attack);
+        }
+        UpdateAmmoInfo();
            
     }
 
-    void CreateBulletPool(){
+    void CreateBulletPool()
+    {
         for(int i=0; i< poolAmount; i++){
             GameObject b = Instantiate(bulletPrefab, aim.position, aim.rotation);
             bulletPool.Add(b);
@@ -61,7 +65,8 @@ public class PlayerShoot : MonoBehaviour
         return null;
     }
 
-    void CheckAmmoCount(){
+    void CheckAmmoCount()
+    {
         ammoCurrent = 0;
         for (int i = 0; i < bulletPool.Count; i++){
             if(bulletPool[i].gameObject.activeInHierarchy){
@@ -70,9 +75,10 @@ public class PlayerShoot : MonoBehaviour
         }
     }
 
-    public void UpdateAmmoInfo(){
+    public void UpdateAmmoInfo()
+    {
         CheckAmmoCount();
-         sliderAmmo.value = poolAmount - ammoCurrent;
+        sliderAmmo.value = poolAmount - ammoCurrent;
     }
 
 }

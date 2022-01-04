@@ -4,14 +4,30 @@ using UnityEngine;
 
 public class EnemyShoot : MonoBehaviour
 {
-    [SerializeField] GameObject enemyBulletPrefab;
-    [SerializeField] Transform aim;
+    [SerializeField] private GameObject enemyBulletPrefab;
+    [SerializeField] private Transform aim;
+    [SerializeField] private float fireRate;
+    private float nextTimeToFire = 0f;
+
     void Start()
     {
-        InvokeRepeating(nameof(Shoot),1f, 1f);
+        //InvokeRepeating(nameof(Shoot),1f, 1f);
     }
 
-    void Shoot(){
-        GameObject b = Instantiate(enemyBulletPrefab, aim.position, Quaternion.identity);
+    private void Update()
+    {
+        if (Time.time >= nextTimeToFire)
+        {
+            nextTimeToFire = Time.time + 1f / fireRate;
+            Shoot();
+        }
+    }
+
+    private void Shoot()
+    {
+        var bullet = EnemyBulletPool.Instance.Get();
+        bullet.transform.rotation = Quaternion.identity;
+        bullet.transform.position = aim.position;
+        bullet.gameObject.SetActive(true);
     }
 }

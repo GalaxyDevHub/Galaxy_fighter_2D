@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class Hp : MonoBehaviour
 {
-    [SerializeField] int hp = 5;
+    [SerializeField] private int hp = 5;
     void Start()
     {
         
     }
 
-
-    public void TakeDamage(int attack){
+    public void TakeDamage(int attack)
+    {
         hp -= attack;
-        if(hp <= 0){
+        if(hp <= 0)
+        {
             Destroy(gameObject);
         }
     }
