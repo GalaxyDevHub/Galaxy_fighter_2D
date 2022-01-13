@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerHp : MonoBehaviour, IDamageable
 {
     [SerializeField] private Slider sliderHp;
-    private int hpMax = 10;
+    private int hpMax = 13;
     private int hpCurrent;
 
     void Start()

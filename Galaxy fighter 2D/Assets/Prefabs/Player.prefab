@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 88221759485694983}
   m_Layer: 7
-  m_Name: Aim
+  m_Name: BulletSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 88221759485694980}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.049, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 88221760928445590}
@@ -114,6 +114,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1555355279622757161, guid: 6240e3bce235fb746b984df658307573, type: 3}
   aim: {fileID: 88221759485694983}
   sliderAmmo: {fileID: 0}
+  bulletPool: {fileID: 7745324873813173016, guid: 4ce35e8de018983439b36a7f4e264ce1, type: 3}
 --- !u!114 &-6088883332228777181
 MonoBehaviour:
   m_ObjectHideFlags: 0

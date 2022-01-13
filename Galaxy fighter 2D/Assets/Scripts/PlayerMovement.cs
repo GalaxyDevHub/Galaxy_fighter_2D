@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     void MovePlayer()
     {
         rb.velocity = new Vector2(moveX*speedX, 0f);
+        //transform.position = transform.position += new Vector3(moveX * 0.1f, 0, 0);
     }
 
     public void MoveX(float value)

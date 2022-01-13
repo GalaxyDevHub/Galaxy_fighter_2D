@@ -39,7 +39,7 @@ public class PlayerBullet : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         gameObject.SetActive(false);
-        playerShoot.UpdateAmmoInfo();
+        //playerShoot.UpdateAmmoInfo();
     }
 
 }

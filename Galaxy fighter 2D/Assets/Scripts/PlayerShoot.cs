@@ -5,78 +5,39 @@ using UnityEngine.UI;
 
 public class PlayerShoot : MonoBehaviour
 {
-    List<GameObject> bulletPool = new List<GameObject>();
-    int poolAmount = 10, ammoCurrent;
-    [SerializeField] GameObject bulletPrefab;
-    [SerializeField] Transform aim;
     [SerializeField] Slider sliderAmmo;
+    [SerializeField] PlayerBulletPool bulletPool;
+    Transform bulletSpawner;
     float speed = 25f;
     int attack = 1;
+    int poolAmount = 10;
+    int ammoCurrent;
 
     void Start()
     {
-        CreateBulletPool();
+        bulletSpawner = transform.Find("BulletSpawner");
         sliderAmmo.maxValue = poolAmount;
         ammoCurrent = poolAmount;
         sliderAmmo.value = ammoCurrent;
     }
 
-    void Update()
-    {
-        //ShootPC();
-    }
-
-    void ShootPC()
-    {
-        if(Input.GetMouseButtonDown(0)){
-            Shoot();
-        }
-    }
-
-    void CreateBulletPool()
-    {
-        for(int i=0; i< poolAmount; i++){
-            GameObject b = Instantiate(bulletPrefab, aim.position, aim.rotation);
-            bulletPool.Add(b);
-            b.SetActive(false);
-        }
-    }
-
-    GameObject GetPooledObject()
-    {
-        for (int i = 0; i < bulletPool.Count; i++)
-        {
-            if (!bulletPool[i].activeInHierarchy)
-            {
-                return bulletPool[i];
-            }
-        }
-        return null;
-    }
-
     void CheckAmmoCount()
     {
         ammoCurrent = 0;
-        for (int i = 0; i < bulletPool.Count; i++){
-            if(bulletPool[i].gameObject.activeInHierarchy){
-                ammoCurrent++;
-            }
-        }
     }
     public void Shoot()
     {
-        GameObject bullet = GetPooledObject();
-        if (bullet)
-        {
-            bullet.transform.position = new Vector3(aim.position.x, aim.position.y, 0);
-            bullet.SetActive(true);
-            bullet.GetComponent<PlayerBullet>().Initialize(speed, attack);
-        }
-        UpdateAmmoInfo();
+        var bullet = bulletPool.Get();
+        if (bullet == null)
+            return;
+
+        bullet.transform.rotation = bulletSpawner.rotation;
+        bullet.transform.position = bulletSpawner.position;
+        bullet.gameObject.SetActive(true);
 
     }
 
-    public void UpdateAmmoInfo()
+    public void UpdateAmmoBar()
     {
         CheckAmmoCount();
         sliderAmmo.value = poolAmount - ammoCurrent;

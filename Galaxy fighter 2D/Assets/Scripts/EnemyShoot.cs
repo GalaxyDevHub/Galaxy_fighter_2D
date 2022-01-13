@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class EnemyShoot : MonoBehaviour
 {
-    [SerializeField] GameObject enemyBulletPrefab;
-    [SerializeField] Transform aim;
+    [SerializeField] Transform bulletSpawner;
     [SerializeField] float fireRate;
+    [SerializeField] EnemyBulletPool bulletPool;
     float nextTimeToFire = 0f;
-
-    void Start()
-    {
-        //InvokeRepeating(nameof(Shoot),1f, 1f);
-    }
 
     void Update()
     {
@@ -25,9 +20,12 @@ public class EnemyShoot : MonoBehaviour
 
     void Shoot()
     {
-        var bullet = EnemyBulletPool.Instance.Get();
-        bullet.transform.rotation = Quaternion.identity;
-        bullet.transform.position = aim.position;
+        var bullet = bulletPool.Get();
+        if (bullet == null)
+            return;
+
+        bullet.transform.rotation = bulletSpawner.rotation;
+        bullet.transform.position = bulletSpawner.position;
         bullet.gameObject.SetActive(true);
     }
 }

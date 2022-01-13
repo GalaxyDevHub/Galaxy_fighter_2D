@@ -9,9 +9,16 @@ public abstract class ObjectPool<T> : MonoBehaviour where T : Component
     public static ObjectPool<T> Instance { get; private set; }
     private Queue<T> objects = new Queue<T>();
 
-    private void Awake()
+    void Awake()
     {
         Instance = this;
+    }
+
+    void AddObjects(int count)
+    {
+        var newObject = GameObject.Instantiate(prefab);
+        newObject.gameObject.SetActive(false);
+        objects.Enqueue(newObject);
     }
 
     public T Get()
@@ -27,12 +34,5 @@ public abstract class ObjectPool<T> : MonoBehaviour where T : Component
     {
         objectToReturn.gameObject.SetActive(false);
         objects.Enqueue(objectToReturn);
-    }
-
-    private void AddObjects(int count)
-    {
-        var newObject = GameObject.Instantiate(prefab);
-        newObject.gameObject.SetActive(false);
-        objects.Enqueue(newObject);
     }
 }
