@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hp : MonoBehaviour
+public class EnemyHp : MonoBehaviour, IDamageable
 {
     [SerializeField] int hp = 5;
     void Start()

@@ -4,11 +4,24 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] int speed;
+    [SerializeField] float speed;
     [SerializeField] int damage;
     [SerializeField] int timeToDestroy;
+    [SerializeField] bool isPlayerBullet;
     [SerializeField] ObjectPool<Bullet> pool;
     float currentTimeToDestroy;
+    ObjectsMovement movement;
+
+    void Start()
+    {
+        movement = transform.GetComponent<ObjectsMovement>();
+        movement.Move(new Vector3(0,1), speed);
+    }
+
+    void FixedUpdate()
+    {
+        //movement.Move(-transform.up, speed);
+    }
 
     void OnEnable()
     {
@@ -23,13 +36,14 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
-    {
-        transform.Translate(new Vector3(0, -1f) * speed * Time.deltaTime);
-    }
-
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.transform.tag == "Player" && isPlayerBullet == true)
+            return;
+
+        if (other.transform.tag == "Enemy" && isPlayerBullet == false)
+            return;
+
         other.transform.root.GetComponent<IDamageable>()?.TakeDamage(damage);
         pool.ReturnToPool(this);
     }

@@ -1606,8 +1606,8 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 566651695}
           m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-          m_MethodName: MoveX
-          m_Mode: 4
+          m_MethodName: MoveRight
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1622,8 +1622,8 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 566651695}
           m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-          m_MethodName: MoveX
-          m_Mode: 4
+          m_MethodName: MoveCancel
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2017,8 +2017,8 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 566651695}
           m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-          m_MethodName: MoveX
-          m_Mode: 4
+          m_MethodName: MoveLeft
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2033,8 +2033,8 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 566651695}
           m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-          m_MethodName: MoveX
-          m_Mode: 4
+          m_MethodName: MoveCancel
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 88221760928445587}
   - component: {fileID: 88221760928445586}
   - component: {fileID: -6088883332228777181}
+  - component: {fileID: 7449370964475311770}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -99,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba855fb66ed253479b970345ddc28a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0.1
 --- !u!114 &88221760928445586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,8 +113,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8217054f2e411b43a1a0359cbca5c52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 1555355279622757161, guid: 6240e3bce235fb746b984df658307573, type: 3}
-  aim: {fileID: 88221759485694983}
   sliderAmmo: {fileID: 0}
   bulletPool: {fileID: 7745324873813173016, guid: 4ce35e8de018983439b36a7f4e264ce1, type: 3}
 --- !u!114 &-6088883332228777181
@@ -128,6 +128,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sliderHp: {fileID: 0}
+--- !u!114 &7449370964475311770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88221760928445588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 256ac3338cf6f85478302ddafbc55e55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5988176709940727873
 GameObject:
   m_ObjectHideFlags: 0

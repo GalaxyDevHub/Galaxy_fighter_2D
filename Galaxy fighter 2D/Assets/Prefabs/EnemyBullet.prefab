@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2295619996675251332}
   - component: {fileID: 7926433650769457520}
   - component: {fileID: 7778206209297384959}
+  - component: {fileID: 6287404682311540670}
   m_Layer: 8
   m_Name: EnemyBullet
   m_TagString: Bullet
@@ -71,10 +72,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57a7559aa51b7e845957962cdd4462fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 1
   damage: 1
   timeToDestroy: 2
+  isPlayerBullet: 0
   pool: {fileID: 8912713534457105512, guid: cda2bfd3cea5ee24690f0b527df819d4, type: 3}
+--- !u!114 &6287404682311540670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2295619996675251328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 256ac3338cf6f85478302ddafbc55e55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5211255630412236489
 GameObject:
   m_ObjectHideFlags: 0

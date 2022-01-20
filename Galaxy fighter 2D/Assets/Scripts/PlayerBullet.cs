@@ -31,7 +31,7 @@ public class PlayerBullet : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other) 
     {
-        other.gameObject.GetComponent<Hp>()?.TakeDamage(attack);
+        other.gameObject.GetComponent<EnemyHp>()?.TakeDamage(attack);
         StartCoroutine(ReturnToPool(0f));
     }
 
