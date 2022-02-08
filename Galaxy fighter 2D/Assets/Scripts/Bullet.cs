@@ -15,12 +15,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         movement = transform.GetComponent<ObjectsMovement>();
-        movement.Move(new Vector3(0,1), speed);
-    }
-
-    void FixedUpdate()
-    {
-        //movement.Move(-transform.up, speed);
+        movement.Move(new Vector3(transform.position.x, -transform.position.y * 10), speed);
     }
 
     void OnEnable()

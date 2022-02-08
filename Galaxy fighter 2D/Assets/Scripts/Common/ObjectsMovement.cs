@@ -2,20 +2,22 @@ using UnityEngine;
 
 public class ObjectsMovement : MonoBehaviour
 {
-    private Vector3 MovementDirection;
+    private Vector3 direction;
+    private float speed;
 
     void FixedUpdate()
     {
-        transform.Translate(MovementDirection);
+        transform.position = Vector3.MoveTowards(transform.position, direction, Time.deltaTime * speed);
     }
 
-    public void Move(Vector3 direction, float speed)
+    public void Move(Vector3 movementDirection, float movementSpeed)
     {
-        MovementDirection = direction * speed;
+        direction = movementDirection;
+        speed = movementSpeed;
     }
 
     public void MoveCancel()
     {
-        MovementDirection = new Vector3();
+        direction = transform.position;
     }
 }

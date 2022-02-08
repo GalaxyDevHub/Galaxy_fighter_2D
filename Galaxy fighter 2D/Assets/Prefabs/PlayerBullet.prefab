@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57a7559aa51b7e845957962cdd4462fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 10
   damage: 1
   timeToDestroy: 2
   isPlayerBullet: 1
